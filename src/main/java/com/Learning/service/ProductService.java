@@ -40,6 +40,14 @@ public class ProductService {
 		repository.deleteById(id);
 		return "product hatyo" +id;
 	}
+	 
 	
-	
+	//there is no method of update in spring jpa all we have to work in save method
+	public Product updateProduct(Product product) {
+		Product existingProduct = repository.findById(product.getId()).orElse(null);  
+		existingProduct.setName(product.getName());
+		existingProduct.setQuantity(product.getQuantity());
+		existingProduct.setPrice(product.getPrice());
+		return repository.save(existingProduct);
+	}
 }
