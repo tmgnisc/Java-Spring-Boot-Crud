@@ -35,4 +35,11 @@ public class ProductService {
 	public Product getProductByName(String name) {
 		return repository.findByName(name); //method manually 
 	}
+	
+	public String deleteProduct(int id) {
+		repository.deleteById(id);
+		return "product hatyo" +id;
+	}
+	
+	
 }
