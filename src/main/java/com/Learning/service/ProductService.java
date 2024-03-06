@@ -22,4 +22,17 @@ public class ProductService {
 		return repository.saveAll(products);
 	}
 
+	
+	public List<Product> getProducts(){
+		return repository.findAll();
+		
+	}
+	
+	public Product getProductByID(int id) {
+		return repository.findById(id).orElse(null);
+	}
+	
+	public Product getProductByName(String name) {
+		return repository.findByName(name); //method manually 
+	}
 }
