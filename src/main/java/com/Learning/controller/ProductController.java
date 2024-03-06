@@ -3,7 +3,10 @@ package com.Learning.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,15 +29,24 @@ public class ProductController {
 		return service.saveProducts(products);
 	}
 	
+	
+	@GetMapping("/products")
 	public List<Product> findAllProducts(){
 		return service.getProducts();
 	}
 	
-	public Product findProductById(int id) {
+	@GetMapping("/product/{id}") //if we use pathvariable we need to do this or else we receive 404 error
+	public Product findProductById(@PathVariable int id) {   //we need to pathvariable annotations 
 		return service.getProductByID(id);
 	}
 	
-	public Product findProductByName(String name) {
+	@GetMapping("/product/{name}")
+	public Product findProductByName(@PathVariable String name) {
 		return service.getProductByName(name);
+	}
+	
+	@PutMapping("/update")
+	public Product updateProduct(@RequestBody Product product) {
+		return service.updateProduct(product);
 	}
 }
